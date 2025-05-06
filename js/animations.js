@@ -102,17 +102,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const sectionObserver = new IntersectionObserver(enhancedSectionAnimation, enhancedObserverOptions);
     const sections = document.querySelectorAll('#skills, #projects, #experience, #contact, .cta-section');
     sections.forEach(section => {
-        sectionObserver.observe(section);
+        if (section) {
+            sectionObserver.observe(section);
+        }
     });
 
     // Parallax effect for the hero section
     const hero = document.querySelector('.hero');
-    window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        if (hero) {
+    if (hero) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
             hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-        }
-    });
+        });
+    }
 
     // Smooth hover animations for buttons
     const buttons = document.querySelectorAll('.cta-button, .filter-btn');
